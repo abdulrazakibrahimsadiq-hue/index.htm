@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matrix HUD</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#000;
+overflow:hidden;
+font-family:"Courier New",monospace;
+color:#00ff66;
+}
+
+/* Matrix Rain */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* Handwritten Terminal */
+.terminal{
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:85%;
+
+max-width:700px;
+
+padding:30px;
+
+border:1px solid #00ff66;
+
+box-shadow:
+
+0 0 10px #00ff66,
+
+0 0 30px #00ff66;
+
+background:rgba(0,0,0,.55);
+
+}
+
+.title{
+
+font-size:28px;
+
+letter-spacing:4px;
+
+margin-bottom:20px;
+
+text-shadow:0 0 12px #00ff66;
+
+}
+
+pre{
+
+font-size:18px;
+
+line-height:1.7;
+
+white-space:pre-wrap;
+
+text-shadow:0 0 5px #00ff66;
+
+animation:flicker .08s infinite;
+
+}
+
+.cursor{
+
+display:inline-block;
+
+width:10px;
+
+height:20px;
+
+background:#00ff66;
+
+animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+50%{opacity:0;}
+
+}
+
+@keyframes flicker{
+
+50%{
+
+opacity:.96;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal">
+
+<div class="title">
+
+MATRIX TERMINAL
+
+</div>
+
+<pre id="typing"></pre>
+
+<span class="cursor"></span>
+
+</div>
+
+<script>
+
+const text=`
+
+> SYSTEM ONLINE
+
+> CONNECTING...
+
+> ACCESS LEVEL: SIMULATION
+
+> INITIALIZING MATRIX...
+
+██████████████████████
+
+Loading Modules...
+
+██████████████████████
+
+Rendering Interface...
+
+██████████████████████
+
+Loading Animation...
+
+██████████████████████
+
+Status........OK
+
+Security......ACTIVE
+
+Mode..........CINEMATIC
+
+Welcome User.
+
+`;
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementBy
